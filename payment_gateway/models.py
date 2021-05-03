@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib import admin
 import datetime
 import random
-
+from django.utils.timezone import now
 
 class Payment(models.Model):
     invoice = models.BigIntegerField(verbose_name='شماره فاکتور',  blank=True, null=True,)
@@ -12,7 +12,7 @@ class Payment(models.Model):
     amount = models.DecimalField(verbose_name='مبلغ', blank=False, decimal_places=2, max_digits=12)
     description = models.CharField(verbose_name='توضیحات', max_length=300, null=True, blank=True)
     payed = models.BooleanField(default=False, verbose_name='پرداخت شده؟')
-    createDate = models.DateTimeField(default=datetime.datetime.now(), verbose_name='تاریخ ایجاد')
+    createDate = models.DateTimeField(default=now(), verbose_name='تاریخ ایجاد')
     paymentDate = models.DateTimeField(verbose_name='تاریخ پرداخت', null=True, blank=True)
     rrn = models.CharField(verbose_name='RRN', max_length=250, null=True, blank=True)
     refId = models.CharField(verbose_name='شماره پیگیری', max_length=250, null=True, blank=True)
